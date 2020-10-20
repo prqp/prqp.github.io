@@ -1,0 +1,66 @@
+#burger {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  z-index: 2;
+  width: 30px;
+  width: min-content;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  span {
+    display: block;
+    height: 3px;
+    width: 30px;
+    margin-bottom: 5px;
+    background: black;
+    border-radius: 2px;
+
+    // transition: all 0.2s ease-in;
+
+    &:nth-child(2)::after {
+      content: '';
+      background: black;
+      border-radius: 2px;
+      width: 30px;
+      height: 100%;
+      position: absolute;
+      opacity: 0;
+    }
+  }
+
+  &.checked {
+    span {
+      opacity: 0;
+    }
+
+    span:nth-child(2) {
+      opacity: 1;
+      transform: rotate(-45deg);
+
+      &::after {
+        transform: rotate(90deg);
+        opacity: 1;
+      }
+    }
+
+    #title {
+      opacity: 0.5;
+    }
+  }
+
+  #title {
+    position: absolute;
+    line-height: 30px;
+    margin-top: 50px;
+    height: 30px;
+    transform: rotate(270deg) translateX(-100%);
+    transform-origin: top left;
+    font-weight: 400;
+    font-size: 20px;
+    user-select: none;
+    white-space: nowrap;
+  }
+}

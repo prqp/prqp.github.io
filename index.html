@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PRQP</title>
+    <link rel="stylesheet" href="style/index.css" />
+  </head>
+  <body>
+    <div id="burger">
+      <span></span>
+      <span></span>
+      <span></span>
+      <div id="title">PAGE 123 - 20/10/20</div>
+    </div>
+    <div id="index">
+      <label for="">PAGE 1</label>
+      <label for="">PAGE 2</label>
+      <label for="">PAGE 3</label>
+      <label for="">PAGE 4</label>
+      <label for="">PAGE 5</label>
+    </div>
+    <script>
+      const burger = document.querySelector('#burger');
+      const index = document.querySelector('#index');
+
+      burger.addEventListener('click', () => {
+        burger.classList.toggle('checked');
+        index.classList.toggle('checked');
+      });
+    </script>
+  </body>
+</html>
