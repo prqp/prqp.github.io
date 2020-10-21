@@ -11,15 +11,15 @@ $burger-transition-time-fast: 0.2s;
 $burger-transition-curve: cubic-bezier(1, 0, 0, 1);
 @import 'menu/burger';
 
-$index-font-size: 15px;
-$index-elem-spacing: 5px;
-$index-elem-opacity: 0.5;
-$index-transition-time: 0.2s;
-$index-height: 100%;
-$index-width: 200px;
-$index-left: calc(calc(#{$burger-left} * 2) + #{$burger-width});
-$index-line-width: 2px;
-@import 'menu/index';
+$menu-font-size: 15px;
+$menu-elem-spacing: 5px;
+$menu-elem-opacity: 0.5;
+$menu-transition-time: 0.2s;
+$menu-height: 100%;
+$menu-width: 200px;
+$menu-left: calc(calc(#{$burger-left} * 2) + #{$burger-width});
+$menu-line-width: 2px;
+@import 'menu/menu';
 
 $page-left: calc(calc(#{$burger-left} * 2) + #{$burger-width});
 $page-top: 0;

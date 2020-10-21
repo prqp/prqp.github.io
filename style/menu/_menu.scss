@@ -1,0 +1,28 @@
+#menu {
+  position: absolute;
+  height: $menu-height;
+  width: $menu-width;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  z-index: 0;
+  background: white;
+  left: $menu-left;
+  border-left: $menu-line-width solid black;
+
+  a {
+    font-size: $menu-font-size;
+    padding: $menu-elem-spacing;
+    transition: opacity $menu-transition-time ease;
+    opacity: $menu-elem-opacity;
+    text-decoration: none;
+    color: black;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 1;
+    }
+  }
+}

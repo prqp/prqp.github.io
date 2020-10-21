@@ -13,27 +13,37 @@
       <span></span>
       <div id="title">PAGE 123 - 20/10/20</div>
     </div>
-    <div id="index">
-      <label for="">PAGE 1</label>
-      <label for="">PAGE 2</label>
-      <label for="">PAGE 3</label>
-      <label for="">PAGE 4</label>
-      <label for="">PAGE 5</label>
-    </div>
+    <div id="menu"></div>
     <div id="page">
       <h1>This is an header</h1>
       <p>this is a paragraph</p>
       <p>oh boy nother one</p>
     </div>
     <script>
+      //
+
       const burger = document.querySelector('#burger');
-      const index = document.querySelector('#index');
+      const menu = document.querySelector('#menu');
       const page = document.querySelector('#page');
 
       burger.addEventListener('click', () => {
         burger.classList.toggle('checked');
         page.classList.toggle('closed');
       });
+
+      fetch('pages.json')
+        .then((res) => res.json())
+        .then(({ pages }) => {
+          pages.forEach(({ title, url }) => {
+            const h = document.createElement('a');
+            h.innerText = title;
+            h.href = url;
+            menu.appendChild(h);
+          });
+        });
+
+      //
     </script>
+    <script src="menu.js"></script>
   </body>
 </html>

@@ -13,7 +13,7 @@
   background: white;
 
   &.closed {
-    left: calc(#{$index-width} + #{$page-left});
+    left: calc(#{$menu-width} + #{$page-left});
   }
 
   p {
