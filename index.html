@@ -28,10 +28,11 @@
     <script>
       const burger = document.querySelector('#burger');
       const index = document.querySelector('#index');
+      const page = document.querySelector('#page');
 
       burger.addEventListener('click', () => {
         burger.classList.toggle('checked');
-        index.classList.toggle('checked');
+        page.classList.toggle('closed');
       });
     </script>
   </body>

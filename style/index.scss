@@ -15,9 +15,18 @@ $index-font-size: 15px;
 $index-elem-spacing: 5px;
 $index-elem-opacity: 0.5;
 $index-transition-time: 0.2s;
+$index-height: 100%;
+$index-width: 200px;
+$index-left: calc(calc(#{$burger-left} * 2) + #{$burger-width});
+$index-line-width: 2px;
 @import 'menu/index';
 
-$color: red;
+$page-left: calc(calc(#{$burger-left} * 2) + #{$burger-width});
+$page-top: 0;
+$page-padding: 46px;
+$page-line-width: 2px;
+$page-p-spacing: 5px;
+$page-transition-time: $burger-transition-time-fast;
 @import 'page';
 
 * {
@@ -28,4 +37,5 @@ $color: red;
 
 html {
   font-family: monospace;
+  overflow-x: hidden;
 }

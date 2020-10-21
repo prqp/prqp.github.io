@@ -1,28 +1,22 @@
 #index {
   position: absolute;
-  height: 100%;
-  width: 100%;
+  height: $index-height;
+  width: $index-width;
   display: flex;
   align-items: center;
   justify-content: center;
-  left: -100%;
   display: flex;
   flex-direction: column;
-  z-index: 1;
+  z-index: 0;
   background: white;
-
-  &.checked {
-    left: 0;
-    label {
-      opacity: $index-elem-opacity;
-    }
-  }
+  left: $index-left;
+  border-left: $index-line-width solid black;
 
   label {
     font-size: $index-font-size;
     padding: $index-elem-spacing;
     transition: opacity $index-transition-time ease;
-    opacity: 0;
+    opacity: $index-elem-opacity;
 
     &:hover {
       cursor: pointer;

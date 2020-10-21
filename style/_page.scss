@@ -2,7 +2,21 @@
 
 #page {
   position: absolute;
-  top: 50px;
-  left: 130px;
-  color: $color;
+  top: $page-top;
+  left: $page-left;
+  height: 100%;
+  padding: $page-padding;
+  border-left: $page-line-width solid black;
+  z-index: 1;
+  transition: left $page-transition-time;
+  width: 100%;
+  background: white;
+
+  &.closed {
+    left: calc(#{$index-width} + #{$page-left});
+  }
+
+  p {
+    margin-top: $page-p-spacing;
+  }
 }
