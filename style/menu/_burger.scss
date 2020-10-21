@@ -1,9 +1,19 @@
+$burger-top: 50px;
+$burger-left: 50px;
+$burger-width: 30px;
+$burger-line-width: 3px;
+$burger-line-spacing: 5px;
+$burger-line-radius: 2px;
+$burger-bottom: 40px;
+$burger-label-fonst-size: 20px;
+$burger-label-opacity-to: 0.5;
+
 #burger {
   position: absolute;
-  top: 50px;
-  left: 50px;
+  top: $burger-top;
+  left: $burger-left;
   z-index: 2;
-  width: 30px;
+  width: $burger-width;
   width: min-content;
 
   &:hover {
@@ -12,20 +22,18 @@
 
   span {
     display: block;
-    height: 3px;
-    width: 30px;
-    margin-bottom: 5px;
+    height: $burger-line-width;
+    width: $burger-width;
+    margin-bottom: $burger-line-spacing;
     background: black;
-    border-radius: 2px;
-
-    // transition: all 0.2s ease-in;
+    border-radius: $burger-line-radius;
 
     &:nth-child(2)::after {
       content: '';
       background: black;
-      border-radius: 2px;
-      width: 30px;
-      height: 100%;
+      border-radius: $burger-line-radius;
+      width: $burger-width;
+      height: $burger-line-width;
       position: absolute;
       opacity: 0;
     }
@@ -47,19 +55,19 @@
     }
 
     #title {
-      opacity: 0.5;
+      opacity: $burger-label-opacity-to;
     }
   }
 
   #title {
     position: absolute;
-    line-height: 30px;
-    margin-top: 50px;
-    height: 30px;
+    line-height: $burger-width;
+    margin-top: $burger-bottom;
+    height: $burger-width;
     transform: rotate(270deg) translateX(-100%);
     transform-origin: top left;
     font-weight: 400;
-    font-size: 20px;
+    font-size: $burger-label-fonst-size;
     user-select: none;
     white-space: nowrap;
   }
