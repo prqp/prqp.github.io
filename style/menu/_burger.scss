@@ -8,6 +8,7 @@ $burger-bottom: 40px;
 $burger-label-fonst-size: 20px;
 $burger-label-opacity-to: 0.5;
 $burger-transition-time-fast: 0.2s;
+$burger-transition-curve: cubic-bezier(1, 0, 0, 1);
 
 $burger-transition-translate-amount: calc(
   #{$burger-line-width} + #{$burger-line-spacing}
@@ -32,7 +33,7 @@ $burger-transition-translate-amount: calc(
     margin-bottom: $burger-line-spacing;
     background: black;
     border-radius: $burger-line-radius;
-    transition: all $burger-transition-time-fast ease;
+    transition: all $burger-transition-time-fast $burger-transition-curve;
   }
 
   &.checked {
