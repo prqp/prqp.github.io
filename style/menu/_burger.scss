@@ -7,6 +7,11 @@ $burger-line-radius: 2px;
 $burger-bottom: 40px;
 $burger-label-fonst-size: 20px;
 $burger-label-opacity-to: 0.5;
+$burger-transition-time-fast: 0.2s;
+
+$burger-transition-translate-amount: calc(
+  #{$burger-line-width} + #{$burger-line-spacing}
+);
 
 #burger {
   position: absolute;
@@ -27,33 +32,20 @@ $burger-label-opacity-to: 0.5;
     margin-bottom: $burger-line-spacing;
     background: black;
     border-radius: $burger-line-radius;
-
-    &:nth-child(2)::after {
-      content: '';
-      background: black;
-      border-radius: $burger-line-radius;
-      width: $burger-width;
-      height: $burger-line-width;
-      position: absolute;
-      opacity: 0;
-    }
+    transition: all $burger-transition-time-fast ease;
   }
 
   &.checked {
-    span {
+    span:nth-child(1) {
+      transform: translateY($burger-transition-translate-amount) rotate(-225deg);
+    }
+    span:nth-child(3) {
+      transform: translateY(calc(#{$burger-transition-translate-amount} * -1))
+        rotate(45deg);
+    }
+    span:nth-child(2) {
       opacity: 0;
     }
-
-    span:nth-child(2) {
-      opacity: 1;
-      transform: rotate(-45deg);
-
-      &::after {
-        transform: rotate(90deg);
-        opacity: 1;
-      }
-    }
-
     #title {
       opacity: $burger-label-opacity-to;
     }
@@ -70,5 +62,7 @@ $burger-label-opacity-to: 0.5;
     font-size: $burger-label-fonst-size;
     user-select: none;
     white-space: nowrap;
+
+    transition: opacity $burger-transition-time-fast;
   }
 }
