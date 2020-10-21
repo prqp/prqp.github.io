@@ -7,43 +7,53 @@
     <link rel="stylesheet" href="style/index.css" />
   </head>
   <body>
-    <div id="burger">
+    <div id="burger" onclick="toggle_menu()">
       <span></span>
       <span></span>
       <span></span>
-      <div id="title">PAGE 123 - 20/10/20</div>
+      <div id="title"></div>
     </div>
     <div id="menu"></div>
-    <div id="page">
-      <h1>This is an header</h1>
-      <p>this is a paragraph</p>
-      <p>oh boy nother one</p>
-    </div>
+    <div id="page"></div>
     <script>
       //
 
       const burger = document.querySelector('#burger');
       const menu = document.querySelector('#menu');
       const page = document.querySelector('#page');
+      const menu_title = document.querySelector('#title');
 
-      burger.addEventListener('click', () => {
+      const toggle_menu = () => {
         burger.classList.toggle('checked');
         page.classList.toggle('closed');
-      });
+      };
 
-      fetch('pages.json')
+      const load_page = ({ title, url, menu_field }) => {
+        menu_title.innerText = title;
+        fetch(`pages/${url}`)
+          .then((res) => res.text())
+          .then((html) => {
+            page.innerHTML = html;
+          });
+      };
+
+      fetch('pages/pages.json')
         .then((res) => res.json())
         .then(({ pages }) => {
-          pages.forEach(({ title, url }) => {
+          pages = pages.sort(({ index: ia }, { index: ib }) => ia < ib);
+          if (pages.length > 0) load_page(pages[0]);
+          pages.forEach((page) => {
             const h = document.createElement('a');
-            h.innerText = title;
-            h.href = url;
+            h.innerText = page.menu_field;
+            h.addEventListener('click', () => {
+              toggle_menu();
+              load_page(page);
+            });
             menu.appendChild(h);
           });
         });
 
       //
     </script>
-    <script src="menu.js"></script>
   </body>
 </html>
