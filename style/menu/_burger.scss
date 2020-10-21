@@ -1,15 +1,3 @@
-$burger-top: 50px;
-$burger-left: 50px;
-$burger-width: 30px;
-$burger-line-width: 3px;
-$burger-line-spacing: 5px;
-$burger-line-radius: 2px;
-$burger-bottom: 40px;
-$burger-label-fonst-size: 20px;
-$burger-label-opacity-to: 0.5;
-$burger-transition-time-fast: 0.2s;
-$burger-transition-curve: cubic-bezier(1, 0, 0, 1);
-
 $burger-transition-translate-amount: calc(
   #{$burger-line-width} + #{$burger-line-spacing}
 );

@@ -81,6 +81,8 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  z-index: 1;
+  background: white;
 }
 
 #index.checked {
@@ -102,6 +104,13 @@
 #index label:hover {
   cursor: pointer;
   opacity: 1;
+}
+
+#page {
+  position: absolute;
+  top: 50px;
+  left: 130px;
+  color: red;
 }
 
 * {
