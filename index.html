@@ -28,9 +28,9 @@
         page.classList.toggle('closed');
       };
 
-      const load_page = ({ title, url, menu_field }) => {
-        menu_title.innerText = title;
-        fetch(`build/${url}`)
+      const load_page = ({ title, url, date }) => {
+        menu_title.innerText = `${title} - ${date}`;
+        fetch(`${url}`)
           .then((res) => res.text())
           .then((html) => {
             page.innerHTML = html;
@@ -40,11 +40,11 @@
       fetch('build/pages.json')
         .then((res) => res.json())
         .then(({ pages }) => {
-          pages = pages.sort(({ index: ia }, { index: ib }) => ia < ib);
+          // pages = pages.sort(({ index: ia }, { index: ib }) => ia < ib);
           if (pages.length > 0) load_page(pages[0]);
           pages.forEach((page) => {
             const h = document.createElement('a');
-            h.innerText = page.menu_field;
+            h.innerText = page.date;
             h.addEventListener('click', () => {
               toggle_menu();
               load_page(page);

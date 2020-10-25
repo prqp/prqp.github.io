@@ -28,10 +28,14 @@ import re
 from enum import Enum
 from itertools import groupby
 from pprint import pprint as pp
+from datetime import datetime
+import json
 
 # .. CONFIG ..
 PAGES_DIR = "pages"
 PAGES_EXT = ".prqp"
+BUILD_DIR = "build"
+BUILD_EXT = "html"
 # ..        ..
 
 # .. LANGUAGE ..
@@ -110,13 +114,32 @@ def transpile(tokens):
     )
 
 
+def out_fname(path):
+    fname = path.split('/')[-1].split('.')[0]
+    return f'{BUILD_DIR}/{fname}.{BUILD_EXT}'
+
+
+def build_menu(tokens):
+    menu = []
+    for page, ctx in tokens.items():
+        entries = {}
+        for token in ctx:
+            if token[0] == Tokens.DATA:
+                entries[token[1][0]] = token[1][1]
+        entries['url'] = out_fname(page)
+        menu.append(entries)
+    return sorted(menu, key=lambda e: datetime.strptime(e['date'], '%d/%m/%y'))
+
+
 if __name__ == "__main__":
     pages = get_pages()
     tokenized = tokenize(pages)
-
+    
     for path, tokens in tokenized.items():
         html = transpile(tokens)
-        fname = path.split('/')[-1].split('.')[1]
-        
-        with open(f'build/{fname}.html', 'w') as out:
+        with open(out_fname(path), 'w') as out:
           out.write('\n'.join(html))
+
+    menu = build_menu(tokenized)
+    with open(f'{BUILD_DIR}/pages.json', 'w') as out:
+        out.write(json.dumps({ 'pages': menu }))
