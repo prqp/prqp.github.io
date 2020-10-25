@@ -1,41 +1,10 @@
 #burger {
   position: absolute;
-  top: 50px;
-  left: 50px;
   z-index: 2;
-  width: 30px;
-  width: -webkit-min-content;
-  width: -moz-min-content;
-  width: min-content;
 }
 
 #burger:hover {
   cursor: pointer;
-}
-
-#burger span {
-  display: block;
-  height: 3px;
-  width: 30px;
-  margin-bottom: 5px;
-  background: black;
-  border-radius: 2px;
-  -webkit-transition: all 0.2s cubic-bezier(1, 0, 0, 1);
-  transition: all 0.2s cubic-bezier(1, 0, 0, 1);
-}
-
-#burger.checked span:nth-child(1) {
-  -webkit-transform: translateY(calc( 3px + 5px)) rotate(-225deg);
-          transform: translateY(calc( 3px + 5px)) rotate(-225deg);
-}
-
-#burger.checked span:nth-child(3) {
-  -webkit-transform: translateY(calc(calc( 3px + 5px) * -1)) rotate(45deg);
-          transform: translateY(calc(calc( 3px + 5px) * -1)) rotate(45deg);
-}
-
-#burger.checked span:nth-child(2) {
-  opacity: 0;
 }
 
 #burger.checked #title {
@@ -43,29 +12,79 @@
 }
 
 #burger #title {
-  position: absolute;
-  line-height: 30px;
-  margin-top: 40px;
-  height: 30px;
-  -webkit-transform: rotate(270deg) translateX(-100%);
-          transform: rotate(270deg) translateX(-100%);
-  -webkit-transform-origin: top left;
-          transform-origin: top left;
   font-weight: 400;
   font-size: 20px;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  white-space: nowrap;
   -webkit-transition: opacity 0.2s;
   transition: opacity 0.2s;
 }
 
+#burger span {
+  display: none;
+}
+
+@media screen and (min-width: 480px) {
+  #burger {
+    top: 50px;
+    left: 50px;
+    width: 30px;
+  }
+  #burger span {
+    display: block;
+    height: 3px;
+    width: 30px;
+    margin-bottom: 5px;
+    background: black;
+    border-radius: 2px;
+    -webkit-transition: all 0.2s cubic-bezier(1, 0, 0, 1);
+    transition: all 0.2s cubic-bezier(1, 0, 0, 1);
+  }
+  #burger.checked span:nth-child(1) {
+    -webkit-transform: translateY(calc( 3px + 5px)) rotate(-225deg);
+            transform: translateY(calc( 3px + 5px)) rotate(-225deg);
+  }
+  #burger.checked span:nth-child(3) {
+    -webkit-transform: translateY(calc(calc( 3px + 5px) * -1)) rotate(45deg);
+            transform: translateY(calc(calc( 3px + 5px) * -1)) rotate(45deg);
+  }
+  #burger.checked span:nth-child(2) {
+    opacity: 0;
+  }
+  #burger #title {
+    position: absolute;
+    line-height: 30px;
+    margin-top: 40px;
+    height: 30px;
+    -webkit-transform: rotate(270deg) translateX(-100%);
+            transform: rotate(270deg) translateX(-100%);
+    -webkit-transform-origin: top left;
+            transform-origin: top left;
+    white-space: nowrap;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #burger {
+    height: calc(50px * 1.5);
+    bottom: 0;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
 #menu {
   position: absolute;
-  height: 100%;
-  width: 200px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -82,8 +101,6 @@
           flex-direction: column;
   z-index: 0;
   background: white;
-  left: calc(calc(50px * 2) + 30px);
-  border-left: 2px solid black;
 }
 
 #menu a {
@@ -101,26 +118,59 @@
   opacity: 1;
 }
 
+@media screen and (min-width: 480px) {
+  #menu {
+    height: 100%;
+    width: 200px;
+    left: calc(calc(50px * 2) + 30px);
+    border-left: 2px solid black;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #menu {
+    height: calc(100% - calc(50px * 1.5));
+    width: 100%;
+    border-bottom: 2px solid black;
+  }
+}
+
 #page {
   position: absolute;
   top: 0;
-  left: calc(calc(50px * 2) + 30px);
-  height: 100%;
   padding: 46px;
-  border-left: 2px solid black;
   z-index: 1;
-  -webkit-transition: left 0.2s;
-  transition: left 0.2s;
   width: 100%;
   background: white;
 }
 
-#page.closed {
-  left: calc(200px + calc(calc(50px * 2) + 30px));
-}
-
 #page p {
   margin-top: 5px;
+}
+
+@media screen and (min-width: 480px) {
+  #page {
+    left: calc(calc(50px * 2) + 30px);
+    border-left: 2px solid black;
+    height: 100%;
+    -webkit-transition: left 0.2s;
+    transition: left 0.2s;
+  }
+  #page.closed {
+    left: calc(200px + calc(calc(50px * 2) + 30px));
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #page {
+    height: calc(100% - calc(50px * 1.5));
+    border-bottom: 2px solid black;
+    -webkit-transition: top 0.5s;
+    transition: top 0.5s;
+  }
+  #page.closed {
+    top: -100%;
+  }
 }
 
 * {

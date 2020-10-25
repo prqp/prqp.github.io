@@ -3,20 +3,37 @@
 #page {
   position: absolute;
   top: $page-top;
-  left: $page-left;
-  height: 100%;
   padding: $page-padding;
-  border-left: $page-line-width solid black;
   z-index: 1;
-  transition: left $page-transition-time;
   width: 100%;
   background: white;
 
-  &.closed {
-    left: calc(#{$menu-width} + #{$page-left});
-  }
-
   p {
     margin-top: $page-p-spacing;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  #page {
+    left: $page-left;
+    border-left: $page-line-width solid black;
+    height: 100%;
+    transition: left $page-transition-time;
+
+    &.closed {
+      left: calc(#{$menu-width} + #{$page-left});
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #page {
+    height: calc(100% - calc(#{$burger-top} * 1.5));
+    border-bottom: $page-line-width solid black;
+    transition: top $page-transition-time-slow;
+
+    &.closed {
+      top: -100%;
+    }
   }
 }

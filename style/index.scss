@@ -27,6 +27,7 @@ $page-padding: 46px;
 $page-line-width: 2px;
 $page-p-spacing: 5px;
 $page-transition-time: $burger-transition-time-fast;
+$page-transition-time-slow: 0.5s;
 @import 'page';
 
 * {

@@ -1,7 +1,5 @@
 #menu {
   position: absolute;
-  height: $menu-height;
-  width: $menu-width;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,8 +7,6 @@
   flex-direction: column;
   z-index: 0;
   background: white;
-  left: $menu-left;
-  border-left: $menu-line-width solid black;
 
   a {
     font-size: $menu-font-size;
@@ -24,5 +20,22 @@
       cursor: pointer;
       opacity: 1;
     }
+  }
+}
+
+@media screen and (min-width: 480px) {
+  #menu {
+    height: $menu-height;
+    width: $menu-width;
+    left: $menu-left;
+    border-left: $menu-line-width solid black;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #menu {
+    height: calc(100% - calc(#{$burger-top} * 1.5));
+    width: 100%;
+    border-bottom: $menu-line-width solid black;
   }
 }
