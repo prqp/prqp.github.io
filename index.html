@@ -30,14 +30,14 @@
 
       const load_page = ({ title, url, menu_field }) => {
         menu_title.innerText = title;
-        fetch(`pages/${url}`)
+        fetch(`build/${url}`)
           .then((res) => res.text())
           .then((html) => {
             page.innerHTML = html;
           });
       };
 
-      fetch('pages/pages.json')
+      fetch('build/pages.json')
         .then((res) => res.json())
         .then(({ pages }) => {
           pages = pages.sort(({ index: ia }, { index: ib }) => ia < ib);
