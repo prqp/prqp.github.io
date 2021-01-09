@@ -4,25 +4,6 @@ PRQP ml to html
 by ξ
 """
 
-"""
-LANG EXAMPLE:
-
-.data value
-= header
-paragraph
-# comment
-"""
-
-"""
-TODO
-- parse .data (title, date, author, etc...)
-- in-text markup
-    - bold
-    - italic
-    - imgs
-- build html pages from template
-"""
-
 import os
 import re
 from enum import Enum
