@@ -2,6 +2,16 @@
 
 
 
+### web indexing directives
+
++ `?title=@last`
++ `?title=@first`
++ `?title=[title]`
++ `?date=[date]`
++ ``
+
+
+
 ### .prqp md engine
 
 | element | md                  | example                                  |
