@@ -87,6 +87,7 @@ def groupPar(tokens):
             par = addPar(par)
             grouped.append((token, match))
 
+    addPar(par)
     return grouped
 
 
