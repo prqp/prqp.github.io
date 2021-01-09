@@ -42,7 +42,7 @@ BUILD_EXT = "html"
 TRANSPILE_COMMENTS = True
 class Tokens(Enum):
     DATA = r'\.(.[^ ]*) (.*)'  # $1: data,   $2: value
-    HEADER = r'= (.*)'         # $1: header
+    HEADER = r'=(\d*) (.*)'    # $1: level,  $2: header
     COMMENT = r'# (.*)'        # $1: comment
     TEXT = r'(.*)'             # $1: content
 # ..          ..
@@ -101,7 +101,8 @@ def tokenize(pages):
 
 def transpileToken(token, data):
     if token == Tokens.HEADER:
-        return f'<h1>{data[0]}</h1>'
+        level = data[0] if data[0] else '1'
+        return f'<h{level}>{data[1]}</h{level}>'
     elif token == Tokens.TEXT:
         return f'<p>{" ".join(data)}</p>'
     elif token == Tokens.COMMENT and TRANSPILE_COMMENTS:
