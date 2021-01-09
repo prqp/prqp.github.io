@@ -43,6 +43,7 @@ TRANSPILE_COMMENTS = True
 class Tokens(Enum):
     DATA = r'\.(.[^ ]*) (.*)'  # $1: data,   $2: value
     HEADER = r'=(\d*) (.*)'    # $1: level,  $2: header
+    IMAGE = r'{(.+)}'          # $1: path
     COMMENT = r'# (.*)'        # $1: comment
     TEXT = r'(.*)'             # $1: content
 # ..          ..
@@ -107,6 +108,8 @@ def transpileToken(token, data):
         return f'<p>{" ".join(data)}</p>'
     elif token == Tokens.COMMENT and TRANSPILE_COMMENTS:
         return f'<!-- {data[0]} -->'
+    elif token == Tokens.IMAGE:
+        return f'<img src="/imgs/{data[0]}" alt="{data[0]}" />'
 
 
 def transpile(tokens):
