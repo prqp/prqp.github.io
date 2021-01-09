@@ -1,59 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PRQP</title>
-    <link rel="stylesheet" href="style/index.css" />
-  </head>
-  <body>
-    <div id="burger" onclick="toggle_menu()">
-      <span></span>
-      <span></span>
-      <span></span>
-      <div id="title"></div>
-    </div>
-    <div id="menu"></div>
-    <div id="page"></div>
-    <script>
-      //
 
-      const burger = document.querySelector('#burger');
-      const menu = document.querySelector('#menu');
-      const page = document.querySelector('#page');
-      const menu_title = document.querySelector('#title');
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PRQP</title>
+  <link rel="stylesheet" href="style/index.css" />
+</head>
 
-      const toggle_menu = () => {
-        burger.classList.toggle('checked');
-        page.classList.toggle('closed');
-      };
+<body>
+  <div id="burger" onclick="toggle_menu()">
+    <span></span>
+    <span></span>
+    <span></span>
+    <div id="title"></div>
+  </div>
+  <div id="menu"></div>
+  <div id="page"></div>
+  <script>
+    //
 
-      const load_page = ({ title, url, date }) => {
-        menu_title.innerText = `${title} - ${date}`;
-        fetch(`${url}`)
-          .then((res) => res.text())
-          .then((html) => {
-            page.innerHTML = html;
-          });
-      };
+    const burger = document.querySelector('#burger');
+    const menu = document.querySelector('#menu');
+    const page = document.querySelector('#page');
+    const menu_title = document.querySelector('#title');
 
-      fetch('build/pages.json')
-        .then((res) => res.json())
-        .then(({ pages }) => {
-          // pages = pages.sort(({ index: ia }, { index: ib }) => ia < ib);
-          if (pages.length > 0) load_page(pages[0]);
-          pages.forEach((page) => {
-            const h = document.createElement('a');
-            h.innerText = page.date;
-            h.addEventListener('click', () => {
-              toggle_menu();
-              load_page(page);
-            });
-            menu.appendChild(h);
-          });
+    const toggle_menu = () => {
+      burger.classList.toggle('checked');
+      page.classList.toggle('closed');
+    };
+
+    //
+
+    const params = new URLSearchParams(window.location.search);
+    const title = params.get('title');
+    const date = params.get('date');
+
+    const get_target_page = (pages) => {
+      if (title === '@first') return pages[0];
+      if (title === '@last') return pages[pages.length - 1];
+
+      let p = pages.filter(p => title === p.title)
+      if (p.length > 0) return p[0];
+
+      p = pages.filter(p => title === p.title)
+      if (p.length > 0) return p[0];
+
+      p = pages.filter(p => date === p.date)
+      if (p.length > 0) return p[0];
+
+      return pages[0];
+    }
+
+    //
+
+    const load_page = ({ title, url, date }) => {
+      menu_title.innerText = `${title} - ${date}`;
+      history.replaceState(null, null, `?title=${title}`)
+      fetch(`${url}`)
+        .then((res) => res.text())
+        .then((html) => {
+          page.innerHTML = html;
         });
+    };
+
+    fetch('build/pages.json')
+      .then((res) => res.json())
+      .then(({ pages }) => {
+        if (pages.length > 0) load_page(get_target_page(pages));
+        pages.forEach((page) => {
+          const h = document.createElement('a');
+          h.innerText = page.date;
+          h.addEventListener('click', () => {
+            toggle_menu();
+            load_page(page);
+          });
+          menu.appendChild(h);
+        });
+      });
 
       //
-    </script>
-  </body>
+  </script>
+</body>
+
 </html>
