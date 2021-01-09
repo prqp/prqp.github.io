@@ -10,6 +10,7 @@
 | heading | `=[level=1] [text]` | `= this is a h1`<br />`=2 this is an h2` |
 | text    | `[text]`            | `yeah pretty boring`                     |
 | image   | `{path}`            | `{cat.jpg}`<br />`{animals/deer.webp}`   |
+| meta    | `.{key} {value}`    | `.date 10/10/10`                         |
 
 
 
@@ -28,3 +29,8 @@ this
 is another par
 ```
 
+
+#### meta
+
++ date
++ title
